@@ -1,0 +1,45 @@
+<html>
+
+    <head>
+    </head>
+
+    <body>
+        <button id="ping" onclick="getSWAPI()">
+            <span>Ping the Server!</span>
+            <span class="spinner"></span>
+        </button>
+    </body>
+
+    <script>
+        /*
+        const MESSAGES = [
+            "The server is feeling particularly optimistic today.",
+            "All systems nominal. Coffee levels: optimal.",
+            "404 worries not found.",
+            // ... add more as needed
+        ];
+
+        function getTimestamp() {
+            const now = new Date();
+            const pad = n => String(n).padStart(2, '0');
+            return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}-${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+        }
+
+        function getAPI() {
+            const message = MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
+            const status = "healthy";
+            const timestamp = getTimestamp();
+
+            console.log(`[${timestamp}] status: ${status} | message: ${message}`);
+            return { message, status, timestamp };
+        }
+        */
+
+        async function getSWAPI() {
+            const res = await fetch("http://127.0.0.1:8000/api");
+            const data = await res.json();
+            console.log(data);
+        }
+    </script>
+
+</html>
