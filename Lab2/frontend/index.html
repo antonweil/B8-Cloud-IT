@@ -8,6 +8,11 @@
             <span>Ping the Server!</span>
             <span class="spinner"></span>
         </button>
+
+        <button id="msg" onclick="getAPI()">
+            <span>Get a Message!</span>
+            <span class="spinner"></span>
+        </button>
     </body>
 
     <script>
@@ -34,8 +39,15 @@
             return { message, status, timestamp };
         }
         */
+
         async function getSWAPI() {
             const res = await fetch("http://127.0.0.1:8000/api");
+            const data = await res.json();
+            console.log(data);
+        }
+
+        async function getAPI() {
+            const res = await fetch("http://127.0.0.1:8000/message");
             const data = await res.json();
             console.log(data);
         }

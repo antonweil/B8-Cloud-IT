@@ -22,8 +22,13 @@ messages = [
 def ping():
     return jsonify({
         "status": "healthy",
-        "message": random.choice(messages),
         "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d-%H-%M-%S")
+    })
+
+@app.route("/message",methods=["GET"])
+def message():
+    return jsonify({
+        "message": random.choice(messages),
     })
     
 if __name__ == "__main__":

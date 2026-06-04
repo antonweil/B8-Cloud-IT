@@ -1,0 +1,35 @@
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "8000:8000"          # ONLY service exposed to the host
+    depends_on:
+      - ping
+      - message
+    networks:
+      - app-net
+
+  ping:
+    build: ./ping            # no ports: internal-only
+    depends_on:
+      - message
+    networks:
+      - app-net
+
+  message:
+    build: ./message         # no ports: internal-only
+    networks:
+      - app-net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - gateway
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
