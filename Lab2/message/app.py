@@ -8,6 +8,7 @@ messages = [
     "Wow, a button click",
     "HTTP 400: this is fine",
     "Ping received, Pong delivered",
+    "Like many things in this museum, this Server is DEAD"
 ]
 
 @app.route("/message", methods=["GET"])

@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Forward gateway (API) and frontend (UI) to localhost in one go.
-# Ctrl-C stops BOTH cleanly. Keep this terminal open while you use the app.
-
-# Kill both background forwards when this script exits for any reason.
 cleanup() { kill 0 2>/dev/null; }
 trap cleanup EXIT INT TERM
 
@@ -22,4 +18,4 @@ echo
 kubectl port-forward svc/gateway  8000:8000 &
 kubectl port-forward svc/frontend 3000:80   &
 
-wait   # block here until Ctrl-C, then trap fires and kills both
+wait
