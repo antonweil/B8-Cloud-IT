@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping
+  labels:
+    app: ping
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ping
+  template:
+    metadata:
+      labels:
+        app: ping
+    spec:
+      containers:
+        - name: ping
+          image: ping:local
+          imagePullPolicy: IfNotPresent   # use the image baked into minikube, never pull
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ping            # MUST be "ping" — gateway calls http://ping:8000
+spec:
+  selector:
+    app: ping
+  ports:
+    - port: 8000        # the port other pods dial
+      targetPort: 8000  # the containerPort it forwards to
+  # type omitted -> ClusterIP (internal-only, == "no ports:" in compose)
