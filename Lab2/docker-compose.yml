@@ -17,7 +17,9 @@ services:
       - app-net
 
   message:
-    build: ./message         # no ports: internal-only
+    build: ./message
+    environment:
+      - AZURE_STORAGE_CONNECTION_STRING=${AZURE_STORAGE_CONNECTION_STRING}
     networks:
       - app-net
 

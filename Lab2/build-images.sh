@@ -6,7 +6,7 @@ set -euo pipefail
 # pull "gateway:local" from Docker Hub and fail with ErrImagePull.
 #
 # Run from anywhere; this cds to the project root automatically.
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")"
 
 eval "$(minikube docker-env)"   # point `docker` at minikube's daemon (this shell only)
 

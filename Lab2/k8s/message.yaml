@@ -17,6 +17,9 @@ spec:
       containers:
         - name: message
           image: message:local
+          envFrom:
+            - secretRef:
+                name: azure-blob
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000

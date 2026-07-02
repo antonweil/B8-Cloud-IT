@@ -1,0 +1,14 @@
+# secrets / env
+.env
+*.env
+!*.env.example
+k8s/*secret*.yaml
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# os junk (you're on macOS)
+.DS_Store
